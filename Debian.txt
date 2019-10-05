@@ -114,7 +114,7 @@ systemctl enable php7.0-fpm.service
 systemctl start mysql.service
 systemctl enable mysql.service
 -----------------------------------------------------------------------------------------------------
-19、修改启动菜单和等待时间：
+19、修改启动菜单和等待时间。
 chmod +w /boot/grub/grub.cfg
 vim /boot/grub/grub.cfg
 apt autoremove     //删除孤立的软件包。
@@ -122,6 +122,23 @@ apt clean     //清理下载的包。
 apt autoclean     //自动清理系统。
 rm -f /root/.bash_history
 -----------------------------------------------------------------------------------------------------
-20、下载Debian版Skype聊天软件。
+20、配置桥接网络。
+apt install net-tools     //查看网卡详情
+apt install bridge-utils     //安装网桥工具
+-----------------------------------------------------------------------------------------------------
+sudo vim /etc/network/interfaces     //添加下面配置并保存。
+-----------------------------------------------------------------------------------------------------
+auto vnet0
+iface vnet0 inet static
+    bridge_ports enp0s31f6
+    bridge_stp off
+    bridge_waitport 0
+    bridge_fd 0
+    address 192.168.1.2
+    broadcast 192.168.1.255
+    netmask 255.255.255.0
+    gateway 192.168.1.1
+-----------------------------------------------------------------------------------------------------
+21、下载Debian版Skype聊天软件。
 https://repo.skype.com/latest/skypeforlinux-64.deb
 -----------------------------------------------------------------------------------------------------
