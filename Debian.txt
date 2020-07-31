@@ -49,31 +49,35 @@ apt install golang
 apt install nodejs npm
 ========================================================================================
 11、配置NPM全局安装。
-mkdir ~/.npm-global     //用户权限配置
-npm config set prefix '~/.npm-global'     //用户权限配置
-export PATH=~/.npm-global/bin:$PATH     //临时性激活
-source ~/.profile     //临时性激活
+$ mkdir ~/.npm-global     //用户权限配置
+$ npm config set prefix '~/.npm-global'     //用户权限配置
+$ export PATH=~/.npm-global/bin:$PATH     //临时性激活
+$ source ~/.profile     //临时性激活
 ========================================================================================
-12、全局环境变量配置。
+12、全局环境变量配置(~/.profile ->会屏蔽以下设置)。
 vim /etc/profile
 ========================================================================================
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
-fcitx &     //这一段使用ibus输入法不需要填。
 
+export ANDROID_HOME=/opt/android-sdk-linux
+export PUB_HOSTED_URL=https://pub.flutter-io.cn
+export FLUTTER_STORAGE_BASE_URL=https://storage.flutter-io.cn
 export GOPATH=$HOME/.golang
-export PATH="$PATH:$GOPATH/bin:$PATH:$HOME/.cargo/bin:$PATH:$HOME/.npm-global/bin"
-=====================================================================================================
+export PATH="$HOME/.cargo/bin:$PATH:$HOME/.npm-global/bin:$PATH"
+export PATH="$GOPATH/bin:$PATH:/opt/flutter/bin:$PATH:/opt/dart-sdk/bin:$PATH"
+export PATH="$ANDROID_HOME/tools:$PATH:$ANDROID_HOME/platform-tools:$PATH:$ANDROID_HOME/emulator:$PATH"
+========================================================================================================
 13、NPM国内镜像源。
-npm install -g cnpm --registry=https://registry.npm.taobao.org      //可使用npm和cnpm安装应用
-=====================================================================================================
+$ npm install -g cnpm --registry=https://registry.npm.taobao.org      //可使用npm和cnpm安装应用
+========================================================================================================
 14、安装Rust语言环境。
 apt install curl
-curl https://sh.rustup.rs -sSf | sh
+$ curl https://sh.rustup.rs -sSf | sh
 =====================================================================================================
 15、配置Rust国内源。
-vim ~/.cargo/config
+$ vim ~/.cargo/config
 =====================================================================================================
 [source.crates-io]
 registry = "https://github.com/rust-lang/crates.io-index"
